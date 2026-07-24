@@ -1,0 +1,311 @@
+{
+  "users": [
+    {
+      "_id": "1",
+      "id": "1",
+      "firstName": "s",
+      "lastName": "g",
+      "email": "srija@gmail.com",
+      "password": "$2a$12$4H4j9NdwCTTM5Uocr2wb0.wv8WTy1lk5/FWn0//35tW.j4N5Xkqri",
+      "avatar": "🐉",
+      "careerGoal": "Land my first job",
+      "shieldScore": 0,
+      "resumeScore": 0,
+      "interviewScore": 0,
+      "scamScore": 0,
+      "onlineScore": 0,
+      "toolsUsed": 0,
+      "scansDone": 0,
+      "roadmapsCreated": 0,
+      "createdAt": "2026-06-13T04:51:30.438Z",
+      "updatedAt": "2026-06-13T04:51:30.438Z"
+    },
+    {
+      "_id": "2",
+      "id": "2",
+      "firstName": "KORAVENA",
+      "lastName": "BABU",
+      "email": "akashkoravena@gmail.com",
+      "password": "$2a$12$HiuGVLoDWTMjtjwPaGmoGexvdLq2KVWT2PaoaOv81v9Q.LfBn.dsG",
+      "avatar": "🐺",
+      "careerGoal": "Land my first job",
+      "shieldScore": 85,
+      "resumeScore": 85,
+      "interviewScore": 0,
+      "scamScore": 0,
+      "onlineScore": 0,
+      "toolsUsed": 4,
+      "scansDone": 4,
+      "roadmapsCreated": 0,
+      "createdAt": "2026-07-24T14:37:49.071Z",
+      "updatedAt": "2026-07-24T14:44:45.222Z"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "1",
+      "userId": "1",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxIiwiaWF0IjoxNzgxMzI2MjkwLCJleHAiOjE3ODM5MTgyOTB9.JNEN-_GsyBfDCmblZBR7zLgfX6yDRbPO3Eha1RVRRF0",
+      "expiresAt": "2026-07-13T04:51:30.455Z",
+      "createdAt": "2026-06-13T04:51:30.455Z"
+    },
+    {
+      "id": "2",
+      "userId": "2",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwiaWF0IjoxNzg0OTAzODY5LCJleHAiOjE3ODc0OTU4Njl9._AYWSexdHYsS_-8d88-x5CcU810pZ0p7q3GSAXfX7XE",
+      "expiresAt": "2026-08-23T14:37:49.085Z",
+      "createdAt": "2026-07-24T14:37:49.085Z"
+    },
+    {
+      "id": "3",
+      "userId": "2",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwiaWF0IjoxNzg0OTA0MjMwLCJleHAiOjE3ODU1MDkwMzB9.ot-c-VkmkDzpSAt0Q9vb6VXI_PBnsl4er9j-Sl1OQ3I",
+      "expiresAt": "2026-07-31T14:43:50.780Z",
+      "createdAt": "2026-07-24T14:43:50.780Z"
+    }
+  ],
+  "tool_history": [
+    {
+      "id": "1",
+      "_id": "1",
+      "userId": "2",
+      "toolType": "resume",
+      "inputSummary": "Resume analysis",
+      "resultSummary": "Score: 72/100",
+      "fullResult": {
+        "overallScore": 72,
+        "atsCompatibility": 80,
+        "sections": {
+          "summary": {
+            "score": 85,
+            "feedback": "The summary is concise but could be more impactful with specific accomplishments",
+            "suggestion": "Quantify achievements and highlight relevant skills"
+          },
+          "experience": {
+            "score": 90,
+            "feedback": "The experience section is well-structured, but could benefit from more descriptive language",
+            "suggestion": "Use action verbs and provide specific examples of accomplishments"
+          },
+          "skills": {
+            "score": 70,
+            "feedback": "The skills section is somewhat limited and could be more comprehensive",
+            "missingSkills": [
+              "cloud computing",
+              "cybersecurity"
+            ]
+          },
+          "education": {
+            "score": 95,
+            "feedback": "The education section is well-organized and easy to follow",
+            "suggestion": "Consider adding relevant coursework or academic achievements"
+          },
+          "formatting": {
+            "score": 60,
+            "feedback": "The formatting is somewhat inconsistent and could be improved for better readability",
+            "issues": [
+              "inconsistent spacing",
+              "missing bullet points"
+            ]
+          }
+        },
+        "keywordAnalysis": {
+          "found": [
+            "machine learning",
+            "natural language processing",
+            "web development"
+          ],
+          "missing": [
+            "agile methodologies",
+            "data analytics"
+          ],
+          "matchPercentage": 75
+        },
+        "strengths": [
+          "strong technical skills",
+          "experience with training and development",
+          "good educational background"
+        ],
+        "improvements": [
+          {
+            "priority": "high",
+            "area": "formatting and consistency",
+            "suggestion": "Use a consistent format throughout the resume and proofread for errors"
+          },
+          {
+            "priority": "medium",
+            "area": "skills section",
+            "suggestion": "Expand the skills section to include more relevant technical skills"
+          },
+          {
+            "priority": "low",
+            "area": "summary statement",
+            "suggestion": "Consider adding a professional summary statement at the top of the resume"
+          }
+        ],
+        "ariaTip": "Remember to tailor your resume to the specific job you're applying for, and use language from the job posting to describe your skills and experience."
+      },
+      "createdAt": "2026-07-24T14:41:38.279Z"
+    },
+    {
+      "id": "2",
+      "_id": "2",
+      "userId": "2",
+      "toolType": "resume",
+      "inputSummary": "Resume analysis",
+      "resultSummary": "Score: 85/100",
+      "fullResult": {
+        "overallScore": 85,
+        "atsCompatibility": 90,
+        "sections": {
+          "summary": {
+            "score": 80,
+            "feedback": "The summary is concise and well-written, but could benefit from more specific examples of accomplishments.",
+            "suggestion": "Add 1-2 specific examples of achievements in the summary."
+          },
+          "experience": {
+            "score": 70,
+            "feedback": "The experience section is limited, with only one internship listed. Consider adding more experience or volunteer work.",
+            "suggestion": "Add more experience or volunteer work to the experience section."
+          },
+          "skills": {
+            "score": 95,
+            "feedback": "The skills section is comprehensive and well-organized, with a wide range of technical skills listed.",
+            "missingSkills": [
+              "Cloud Computing",
+              "Cybersecurity"
+            ]
+          },
+          "education": {
+            "score": 90,
+            "feedback": "The education section is well-organized and easy to read, with relevant details about academic achievements.",
+            "suggestion": "Consider adding relevant coursework or academic projects to the education section."
+          },
+          "formatting": {
+            "score": 80,
+            "feedback": "The resume is well-formatted, but could benefit from more consistent spacing and bullet points.",
+            "issues": [
+              "Inconsistent spacing between sections"
+            ]
+          }
+        },
+        "keywordAnalysis": {
+          "found": [
+            "JavaScript",
+            "Python",
+            "Machine Learning",
+            "React.js",
+            "Node.js"
+          ],
+          "missing": [
+            "Agile Development",
+            "Scrum Master"
+          ],
+          "matchPercentage": 80
+        },
+        "strengths": [
+          "Technical skills",
+          "Project experience",
+          "Education"
+        ],
+        "improvements": [
+          {
+            "priority": "high",
+            "area": "Experience",
+            "suggestion": "Add more experience or volunteer work to the experience section to demonstrate a stronger work history."
+          },
+          {
+            "priority": "medium",
+            "area": "Summary",
+            "suggestion": "Add 1-2 specific examples of achievements in the summary to make it more effective."
+          },
+          {
+            "priority": "low",
+            "area": "Formatting",
+            "suggestion": "Use consistent spacing and bullet points throughout the resume to improve readability."
+          }
+        ],
+        "ariaTip": "Remember to tailor your resume to the specific job you're applying for, and use language from the job posting in your summary and skills sections."
+      },
+      "createdAt": "2026-07-24T14:44:07.550Z"
+    },
+    {
+      "id": "3",
+      "_id": "3",
+      "userId": "2",
+      "toolType": "roast",
+      "inputSummary": "Resume roast",
+      "resultSummary": "Roast score: 40/100",
+      "fullResult": {
+        "roastScore": 40,
+        "overallVerdict": "This resume is a solid foundation, but it needs a serious renovation to stand out in a crowded market.",
+        "burns": [
+          {
+            "section": "PROFESSIONAL SUMMARY",
+            "issue": "Lack of specific accomplishments",
+            "burn": "Instead of just stating you're 'results-driven', show us the results! Quantify your achievements to make a stronger impact.",
+            "fix": "Rewrite the summary to include specific numbers, such as 'Improved user engagement by 25% through responsive React.js interfaces' or 'Deployed 5+ production-ready applications with 99.9% uptime'."
+          },
+          {
+            "section": "EXPERIENCE",
+            "issue": "Limited work experience",
+            "burn": "One internship isn't enough to showcase your skills. Consider adding more projects or volunteer work to demonstrate your capabilities.",
+            "fix": "Add 2-3 more projects or experiences that highlight your technical skills and problem-solving abilities."
+          },
+          {
+            "section": "TECHNICAL SKILLS",
+            "issue": "Too many buzzwords",
+            "burn": "Listing every trendy tech term doesn't make you an expert. Focus on the skills you're actually proficient in and provide examples to back it up.",
+            "fix": "Remove unnecessary buzzwords and group your skills into categories (e.g., programming languages, frameworks, etc.). Provide specific examples of how you've applied each skill."
+          }
+        ],
+        "biggestMistake": "Not tailoring the resume to a specific job or industry, making it too generic and less effective.",
+        "quickWins": [
+          "Remove unnecessary sections, such as 'LINKS', and merge the information into other sections.",
+          "Use a more consistent formatting style throughout the resume.",
+          "Add relevant action verbs (e.g., 'Designed', 'Developed', 'Improved') to describe your experiences and skills."
+        ],
+        "ariaTip": "Remember, this feedback is an opportunity to improve and showcase your strengths. Take it as a chance to refine your resume and increase your chances of landing your dream job!"
+      },
+      "createdAt": "2026-07-24T14:44:24.686Z"
+    },
+    {
+      "id": "4",
+      "_id": "4",
+      "userId": "2",
+      "toolType": "cover-letter",
+      "inputSummary": "Cover letter (professional)",
+      "resultSummary": "Generated",
+      "fullResult": {
+        "coverLetter": "Dear Hiring Manager, I am excited to apply for the Software Development Engineer position at your esteemed organization. As a results-driven Full Stack Developer with expertise in MERN Stack development and AI/ML integration, I am confident in my ability to design and develop scalable web applications, implement REST APIs, and deploy cloud-based solutions. With a strong foundation in programming languages such as Python, JavaScript, and Java, I possess a unique combination of technical skills that enable me to tackle complex problems and deliver high-quality results. My experience in developing AI-powered systems, including a crop disease detection system with 85% accuracy, demonstrates my capability to leverage machine learning and deep learning techniques to drive business value.",
+        "coverLetterContinued": "In addition to my technical expertise, I have a proven track record of deploying production-ready applications on cloud platforms, developing REST APIs that serve thousands of active users, and solving complex problems on platforms like LeetCode and HackerRank. My certifications in Python Programming, JavaScript Development, SQL Database Management, and Prompt Engineering Fundamentals demonstrate my commitment to staying up-to-date with the latest technologies and trends. I am excited about the opportunity to bring my skills and experience to your team and contribute to the development of innovative software solutions.",
+        "coverLetterConclusion": "Thank you for considering my application. I would welcome the opportunity to discuss my qualifications further and explore how my skills and experience align with the requirements of the Software Development Engineer position. Please feel free to contact me at akashkoravena@gmail.com or +91 9398176430. I have included links to my GitHub, LinkedIn, and portfolio for your reference. I look forward to the opportunity to discuss my application and how I can contribute to the success of your organization.",
+        "highlights": [
+          "Results-driven Full Stack Developer with expertise in MERN Stack development and AI/ML integration",
+          "Proven track record of deploying production-ready applications on cloud platforms",
+          "Developed AI-powered systems, including a crop disease detection system with 85% accuracy"
+        ],
+        "keywordsUsed": [
+          "MERN Stack",
+          "AI/ML",
+          "Full Stack Development",
+          "Cloud Platforms",
+          "REST APIs",
+          "Machine Learning",
+          "Deep Learning"
+        ],
+        "tips": [
+          "Tailor your cover letter to the specific job description and requirements",
+          "Highlight your unique combination of technical skills and experience",
+          "Use specific examples to demonstrate your capabilities and achievements"
+        ],
+        "ariaTip": "Remember to proofread your cover letter multiple times for grammar, spelling, and punctuation errors before submitting it"
+      },
+      "createdAt": "2026-07-24T14:44:45.221Z"
+    }
+  ],
+  "_meta": {
+    "nextUserId": 3,
+    "nextHistoryId": 5,
+    "nextSessionId": 4
+  }
+}
