@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { GuardianSVG } from './GuardianSVG';
 import { API } from '../config';
+import ThemeToggle from './ThemeToggle';
 
 const AVATARS = ['🦊', '🐺', '🦁', '🐯', '🦅', '🐉'];
 const GOALS = ['Land my first job', 'Switch careers', 'Get promoted', 'Freelance', 'Startup founder', 'Study abroad'];
@@ -160,6 +161,9 @@ export default function AuthPage({ onLogin, showToast }) {
 
       {/* RIGHT PANEL */}
       <div style={s.right}>
+        <div style={{ position: 'absolute', top: 20, right: 20, zIndex: 10 }}>
+          <ThemeToggle />
+        </div>
         <div style={s.formBox}>
           <div style={s.tabs}>
             <button style={s.tabBtn(tab === 'login')} onClick={() => { setTab('login'); setErrors({}); }}>Sign In</button>

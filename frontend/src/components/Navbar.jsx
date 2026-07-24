@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import ThemeToggle from './ThemeToggle';
 
 export default function Navbar({ user, onLogout, onSectionClick }) {
   const [ddOpen, setDdOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navLinks = [
+    { label: 'Dashboard', emoji: '📊', id: 'dashboard' },
     { label: 'Superpowers', emoji: '✨', id: 'superpowers' },
     { label: 'Guardian', emoji: '⚔️', id: 'guardian' },
     { label: 'How it Works', emoji: '🗺️', id: 'how' },
@@ -87,6 +89,7 @@ export default function Navbar({ user, onLogout, onSectionClick }) {
         </ul>
 
         <div style={s.userArea}>
+          <ThemeToggle />
           <div style={s.avatarBtn} onClick={() => setDdOpen(!ddOpen)}>
             <div style={s.avatar}>{user.avatar || '🦊'}</div>
             <div>

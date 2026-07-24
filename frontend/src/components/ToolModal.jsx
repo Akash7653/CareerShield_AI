@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { API } from '../config';
+import { saveResumeVersion } from './ResumeVersionManager';
 
 const TOOL_META = {
   resume:       { title: '📄 Resume Analyzer',          color: '#2EC4A0', bg: '#E8FFF5' },
@@ -165,11 +166,25 @@ function RoastResult({ r }) {
 function CoverLetterResult({ r }) {
   const [copied, setCopied] = useState(false);
   const copy = () => { navigator.clipboard.writeText(r.coverLetter||''); setCopied(true); setTimeout(()=>setCopied(false),2000); };
+  
+  const download = () => {
+    const blob = new Blob([r.coverLetter], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'cover-letter.txt';
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+  
   return (
     <div>
       <Card title="✉️ Your Cover Letter" accent="#FF7849">
         <div style={{ fontSize:'0.86rem', color:'#1A2B5C', lineHeight:1.75, whiteSpace:'pre-wrap' }}>{r.coverLetter}</div>
-        <button onClick={copy} style={{ marginTop:10, padding:'7px 14px', borderRadius:8, border:'none', cursor:'pointer', background: copied?'#2EC4A0':'#FF7849', color:'white', fontWeight:700, fontSize:'0.8rem' }}>{copied?'✓ Copied!':'📋 Copy'}</button>
+        <div style={{ display:'flex', gap:8, marginTop:10 }}>
+          <button onClick={copy} style={{ padding:'7px 14px', borderRadius:8, border:'none', cursor:'pointer', background: copied?'#2EC4A0':'#FF7849', color:'white', fontWeight:700, fontSize:'0.8rem' }}>{copied?'✓ Copied!':'📋 Copy'}</button>
+          <button onClick={download} style={{ padding:'7px 14px', borderRadius:8, border:'none', cursor:'pointer', background:'#7C6FCD', color:'white', fontWeight:700, fontSize:'0.8rem' }}>📥 Download</button>
+        </div>
       </Card>
       {r.highlights?.length>0 && <Card title="⭐ Key Highlights" accent="#C8A800">{r.highlights.map((h,i)=><div key={i} style={{ fontSize:'0.84rem', color:'#1A2B5C', marginBottom:3 }}>• {h}</div>)}</Card>}
       {r.keywordsUsed?.length>0 && <Card title="🔑 Keywords Used" accent="#2EC4A0">{r.keywordsUsed.map(k=><Tag key={k} text={k} color="#2EC4A0"/>)}</Card>}
@@ -364,6 +379,17 @@ function ColdEmailResult({ r }) {
   const [copied, setCopied] = useState(false);
   const content = tab==='email'?r.message:tab==='linkedin'?r.linkedinVersion:r.followUpMessage;
   const copy = () => { navigator.clipboard.writeText(content||''); setCopied(true); setTimeout(()=>setCopied(false),2000); };
+  
+  const download = () => {
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `cold-email-${tab}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+  
   return (
     <div>
       {r.subject && <div style={{ background:'#FFF3F0', border:'1.5px solid #FF552230', borderRadius:10, padding:'9px 14px', marginBottom:12, fontWeight:700, color:'#FF5722', fontSize:'0.86rem' }}>📌 Subject: {r.subject}</div>}
@@ -373,7 +399,10 @@ function ColdEmailResult({ r }) {
         ))}
       </div>
       <div style={{ background:'#FAFAFE', border:'1.5px solid #E8E4F8', borderRadius:12, padding:'13px 15px', fontSize:'0.86rem', color:'#1A2B5C', lineHeight:1.75, whiteSpace:'pre-wrap', marginBottom:10 }}>{content}</div>
-      <button onClick={copy} style={{ padding:'7px 14px', borderRadius:8, border:'none', cursor:'pointer', background: copied?'#2EC4A0':'#FF5722', color:'white', fontWeight:700, fontSize:'0.8rem' }}>{copied?'✓ Copied!':'📋 Copy'}</button>
+      <div style={{ display:'flex', gap:8 }}>
+        <button onClick={copy} style={{ padding:'7px 14px', borderRadius:8, border:'none', cursor:'pointer', background: copied?'#2EC4A0':'#FF5722', color:'white', fontWeight:700, fontSize:'0.8rem' }}>{copied?'✓ Copied!':'📋 Copy'}</button>
+        <button onClick={download} style={{ padding:'7px 14px', borderRadius:8, border:'none', cursor:'pointer', background:'#7C6FCD', color:'white', fontWeight:700, fontSize:'0.8rem' }}>📥 Download</button>
+      </div>
       {r.tips?.length>0 && <Card title="💡 Tips" accent="#FF5722">{r.tips.map((t,i)=><div key={i} style={{ fontSize:'0.84rem', color:'#444', marginBottom:3 }}>• {t}</div>)}</Card>}
       {r.ariaTip && <AriaBox tip={r.ariaTip}/>}
     </div>
@@ -469,7 +498,19 @@ export default function ToolModal({ toolId, token, onClose, showToast }) {
       const res = await fetch(`${API}/api/tools/${endpoint}`, { method:'POST', headers, body });
       const data = await res.json();
       if (!res.ok) setError(data.error||'Something went wrong.');
-      else { setResult(data.result); showToast?.('✅ Done!','Results ready below','🦉'); }
+      else { 
+        setResult(data.result); 
+        showToast?.('✅ Done!','Results ready below','🦉');
+        
+        // Auto-save resume analysis results
+        if ((endpoint === 'resume' || endpoint === 'roast') && data.result) {
+          try {
+            saveResumeVersion(resumeText || resumeFile?.name, data.result);
+          } catch (e) {
+            console.log('Could not auto-save resume version:', e);
+          }
+        }
+      }
     } catch { setError('Network error — please check your connection and try again.'); }
     setLoading(false);
   };

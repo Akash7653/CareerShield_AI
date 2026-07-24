@@ -1,22 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import Navbar from './Navbar';
 import HeroSection from './HeroSection';
 import ShieldScore from './ShieldScore';
 import FeaturesGrid from './FeaturesGrid';
 import ChatSection from './ChatSection';
 import { HowSection, SafetySection, CtaSection } from './Sections';
-import ToolModal from './ToolModal';
-import LiveInterview from './LiveInterview';
-import ChatPage from './ChatPage';
+
+// Lazy load heavy components
+const ToolModal = lazy(() => import('./ToolModal'));
+const LiveInterview = lazy(() => import('./LiveInterview'));
+const ChatPage = lazy(() => import('./ChatPage'));
+const UserDashboard = lazy(() => import('./UserDashboard'));
 
 export default function MainApp({ user, setUser, token, onLogout, showToast }) {
   const [activeTool, setActiveTool] = useState(null);
   const [showLiveInterview, setShowLiveInterview] = useState(false);
   const [showChatPage, setShowChatPage] = useState(false);
+  const [showDashboard, setShowDashboard] = useState(false);
 
   const scrollTo = (id) => {
     if (id === 'guardian') {
       setShowChatPage(true);
+      return;
+    }
+    if (id === 'dashboard') {
+      setShowDashboard(true);
       return;
     }
     const el = document.getElementById(id);
@@ -35,12 +43,28 @@ export default function MainApp({ user, setUser, token, onLogout, showToast }) {
   const closeTool = () => setActiveTool(null);
 
   // Full-page overlays
+  if (showDashboard) {
+    return (
+      <Suspense fallback={<div style={{ display:'flex', alignItems:'center', justifyContent:'center', minHeight:'100vh', background:'var(--body-bg)' }}>Loading...</div>}>
+        <UserDashboard user={user} token={token} onClose={() => setShowDashboard(false)} />
+      </Suspense>
+    );
+  }
+
   if (showChatPage) {
-    return <ChatPage token={token} onClose={() => setShowChatPage(false)} />;
+    return (
+      <Suspense fallback={<div style={{ display:'flex', alignItems:'center', justifyContent:'center', minHeight:'100vh', background:'var(--body-bg)' }}>Loading...</div>}>
+        <ChatPage token={token} onClose={() => setShowChatPage(false)} />
+      </Suspense>
+    );
   }
 
   if (showLiveInterview) {
-    return <LiveInterview token={token} onClose={() => setShowLiveInterview(false)} />;
+    return (
+      <Suspense fallback={<div style={{ display:'flex', alignItems:'center', justifyContent:'center', minHeight:'100vh', background:'var(--body-bg)' }}>Loading...</div>}>
+        <LiveInterview token={token} onClose={() => setShowLiveInterview(false)} />
+      </Suspense>
+    );
   }
 
   return (
@@ -59,7 +83,9 @@ export default function MainApp({ user, setUser, token, onLogout, showToast }) {
       </main>
 
       {activeTool && (
-        <ToolModal toolId={activeTool} token={token} onClose={closeTool} showToast={showToast} setUser={setUser} />
+        <Suspense fallback={<div style={{ display:'flex', alignItems:'center', justifyContent:'center', minHeight:'100vh', background:'var(--body-bg)' }}>Loading...</div>}>
+          <ToolModal toolId={activeTool} token={token} onClose={closeTool} showToast={showToast} setUser={setUser} />
+        </Suspense>
       )}
     </div>
   );

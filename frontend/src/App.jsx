@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AuthPage from './components/AuthPage';
 import MainApp from './components/MainApp';
 import Toast from './components/Toast';
+import ErrorBoundary from './components/ErrorBoundary';
 import { API } from './config';
 
 export default function App() {
@@ -44,13 +45,13 @@ export default function App() {
   }, [token]);
 
   return (
-    <>
+    <ErrorBoundary>
       <Toast toast={toast} />
       {!user ? (
         <AuthPage onLogin={handleLogin} showToast={showToast} />
       ) : (
         <MainApp user={user} setUser={setUser} token={token} onLogout={handleLogout} showToast={showToast} />
       )}
-    </>
+    </ErrorBoundary>
   );
 }

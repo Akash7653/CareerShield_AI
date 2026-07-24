@@ -18,6 +18,26 @@
   --body-bg: #F9F5FF;
 }
 
+[data-theme="dark"] {
+  --mint: #1A5C4A;
+  --mint-dark: #2EC4A0;
+  --peach: #8B5A3C;
+  --peach-dark: #FFB08A;
+  --lemon: #8B7A3C;
+  --lavender: #4A3F7A;
+  --lavender-dark: #7C6FCD;
+  --sky: #3A5C7A;
+  --sky-dark: #8DD5F5;
+  --rose: #7A3A4A;
+  --rose-dark: #FFB3CB;
+  --coral: #CC6A4A;
+  --teal: #2EC4A0;
+  --purple: #9C8FDD;
+  --navy: #E8E4F8;
+  --dark: #F0EEF8;
+  --body-bg: #1A1A2E;
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
