@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { GuardianMini, GuardianSVG } from './GuardianSVG';
+import { API } from '../config';
 
 const QUICK = [
   { label: '🎯 Interview Tips', q: 'How do I prepare for a tech interview?' },
@@ -45,7 +46,7 @@ export default function ChatPage({ token, onClose }) {
     setLoading(true);
     const newHistory = [...history, { role: 'user', text: q }];
     try {
-      const res = await fetch('/api/tools/chat', {
+      const res = await fetch(`${API}/api/tools/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ message: q, history: newHistory.slice(-14) }),

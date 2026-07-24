@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { API } from '../config';
 
 const TOOL_META = {
   resume:       { title: '📄 Resume Analyzer',          color: '#2EC4A0', bg: '#E8FFF5' },
@@ -465,11 +466,11 @@ export default function ToolModal({ toolId, token, onClose, showToast }) {
     try {
       let body, headers = { Authorization:`Bearer ${token}` };
       if (isForm) { body=bodyData; } else { headers['Content-Type']='application/json'; body=JSON.stringify(bodyData); }
-      const res = await fetch(`/api/tools/${endpoint}`, { method:'POST', headers, body });
+      const res = await fetch(`${API}/api/tools/${endpoint}`, { method:'POST', headers, body });
       const data = await res.json();
       if (!res.ok) setError(data.error||'Something went wrong.');
       else { setResult(data.result); showToast?.('✅ Done!','Results ready below','🦉'); }
-    } catch { setError('Network error — make sure the backend is running on port 3001.'); }
+    } catch { setError('Network error — please check your connection and try again.'); }
     setLoading(false);
   };
 

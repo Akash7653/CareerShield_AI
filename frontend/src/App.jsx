@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AuthPage from './components/AuthPage';
 import MainApp from './components/MainApp';
 import Toast from './components/Toast';
+import { API } from './config';
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -30,7 +31,7 @@ export default function App() {
   // Auto-login if token exists
   useEffect(() => {
     if (token && !user) {
-      fetch('/api/auth/me', {
+      fetch(`${API}/api/auth/me`, {
         headers: { Authorization: `Bearer ${token}` }
       })
         .then(r => r.json())

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { GuardianSVG, GuardianMini } from './GuardianSVG';
+import { API } from '../config';
 
 const PHASE = { SETUP: 'setup', QUESTION: 'question', ANSWERING: 'answering', ANALYZING: 'analyzing', FEEDBACK: 'feedback', REPORT: 'report' };
 
@@ -200,7 +201,7 @@ export default function LiveInterview({ token, onClose }) {
   const handleTimeUp = () => { stopListening(); setPhase(PHASE.ANALYZING); setTimeout(() => submitAnswer(), 400); };
 
   const fetchQuestion = async (idx, prevQs) => {
-    const res = await fetch('/api/tools/interview-question', {
+    const res = await fetch(`${API}/api/tools/interview-question`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
       body: JSON.stringify({ ...setup, questionIndex: idx, totalQuestions: setup.totalQuestions, previousQuestions: prevQs })
@@ -240,7 +241,7 @@ export default function LiveInterview({ token, onClose }) {
     const taken = Math.round((Date.now() - (startTimeRef.current || Date.now())) / 1000);
     setPhase(PHASE.ANALYZING);
     try {
-      const res = await fetch('/api/tools/analyze-answer', {
+      const res = await fetch(`${API}/api/tools/analyze-answer`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ role: setup.role, company: setup.company, round: setup.round, question: currentQuestion, answer, timeTaken: taken, idealTime: 90 })
@@ -283,7 +284,7 @@ export default function LiveInterview({ token, onClose }) {
     setLoading(true); setPhase(PHASE.ANALYZING);
     try {
       const log = qaLog;
-      const res = await fetch('/api/tools/interview-report', {
+      const res = await fetch(`${API}/api/tools/interview-report`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ role: setup.role, company: setup.company, level: setup.level, round: setup.round, qa: log })

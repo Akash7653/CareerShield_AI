@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { GuardianSVG } from './GuardianSVG';
+import { API } from '../config';
 
 const AVATARS = ['🦊', '🐺', '🦁', '🐯', '🦅', '🐉'];
 const GOALS = ['Land my first job', 'Switch careers', 'Get promoted', 'Freelance', 'Startup founder', 'Study abroad'];
@@ -30,7 +31,7 @@ export default function AuthPage({ onLogin, showToast }) {
     if (Object.keys(errs).length) { setErrors(errs); return; }
     setLoading(true);
     try {
-      const res = await fetch('/api/auth/login', {
+      const res = await fetch(`${API}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(loginData),
@@ -50,7 +51,7 @@ export default function AuthPage({ onLogin, showToast }) {
     if (Object.keys(errs).length) { setErrors(errs); return; }
     setLoading(true);
     try {
-      const res = await fetch('/api/auth/signup', {
+      const res = await fetch(`${API}/api/auth/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(signupData),

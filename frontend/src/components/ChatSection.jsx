@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { GuardianMini } from './GuardianSVG';
+import { API } from '../config';
 
 const QUICK = [
   { label: '🎯 Interview Tips', q: 'How do I prepare for a tech interview?' },
@@ -34,7 +35,7 @@ export default function ChatSection({ token, onOpenFullChat }) {
     const newHistory = [...history, { role: 'user', text: q }];
 
     try {
-      const res = await fetch('/api/tools/chat', {
+      const res = await fetch(`${API}/api/tools/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ message: q, history: newHistory.slice(-10) }),
@@ -44,7 +45,7 @@ export default function ChatSection({ token, onOpenFullChat }) {
       setMsgs(m => [...m, { role: 'aria', text: reply }]);
       setHistory([...newHistory, { role: 'aria', text: reply }]);
     } catch {
-      setMsgs(m => [...m, { role: 'aria', text: 'Connection issue! Make sure the backend is running on port 3001. 🔧' }]);
+      setMsgs(m => [...m, { role: 'aria', text: 'Connection issue! Please check your network and try again. 🔧' }]);
     }
     setLoading(false);
   };

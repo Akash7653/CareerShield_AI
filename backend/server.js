@@ -13,7 +13,14 @@ const { initClaude } = require('./services/claude');
 const app  = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'https://career-shield-ai-ebon.vercel.app',
+    /^https:\/\/.*\.vercel\.app$/
+  ],
+  credentials: true
+}));
 app.use(express.json({ limit: '15mb' }));
 app.use(express.urlencoded({ extended: true, limit: '15mb' }));
 
